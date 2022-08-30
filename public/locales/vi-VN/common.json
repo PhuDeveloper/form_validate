@@ -1,0 +1,11 @@
+{
+    "enterName": "Nhập tên",
+    "enterPhoneNumber": "Nhập số điện thoại",
+    "enterEmail": "Nhập email",
+    "enterPassword": "Nhập mật khẩu",
+    "enterRePassword": "Nhập lại mật khẩu",
+    "enterGender": "Nhập giới tính khác",
+    "enterCity": "Nhập thành phố",
+    "enterDistrict": "Nhập quận huyện",
+    "enterWard": "Nhập phường xã"
+  }

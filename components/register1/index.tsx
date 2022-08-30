@@ -8,17 +8,20 @@ import InputSelect from "../shared/inputSelect";
 import InputText from "../shared/inputText";
 import { VaLidationRegister1Form } from "./validate";
 import { useCallback, useEffect, useState } from "react";
+import { Address, FormPropsInterface, ValueInputForm } from "./type";
 
-export default function Register1(props: any) {
+
+
+
+export default function Register1(props: FormPropsInterface) {
   const { handleFormSubmit } = props;
-  const [isGender, setIsGender] = useState(false);
-  const [listCity, setListCity] = useState<any>([]);
-  const [listDistrict, setListDistrict] = useState<any>([]);
-  const [listWard, setListWard] = useState<any>([]);
-  const [idCity, setIdCity] = useState<any>("");
-  const [idDistrict, setIdDistrict] = useState<any>("");
+  const [isGender, setIsGender] = useState<boolean>(false);
+  const [listCity, setListCity] = useState<Address[]>([]);
+  const [listDistrict, setListDistrict] = useState<Address[]>([]);
+  const [listWard, setListWard] = useState<Address[]>([]);
 
-  const { control, handleSubmit } = useForm<any>({
+
+  const { control, handleSubmit,setValue } = useForm<ValueInputForm>({
     defaultValues: {
       userName: "",
       email: "",
@@ -33,9 +36,9 @@ export default function Register1(props: any) {
     },
     resolver: yupResolver(VaLidationRegister1Form({ isGender })),
   });
-  const onSubmit = (value: any) => {
-    // console.log("vlue", value);
-    const formValues: any = {
+
+  const onSubmit = (value: ValueInputForm) => {
+    const formValues: ValueInputForm = {
       userName: value.userName,
       email: value.email,
       phone: value.phone,
@@ -58,22 +61,24 @@ export default function Register1(props: any) {
     control,
     name: "gender",
   });
-  // const idCity = useWatch({
-  //   control,
-  //   name: "city",
-  // });
-  // const idDistrict = useWatch({
-  //   control,
-  //   name: "district",
-  // });
+
+  const idCity = useWatch({
+    control,
+    name: "city",
+  });
+
+  const idDistrict = useWatch({
+    control,
+    name: "district",
+  });
+
   const handleSearchDistrict = (e: any) => {
-    console.log("e.target.value", e.target.value);
-    setIdCity(e.target.value);
+
   };
-  // const handleSearchWard=(e:any)=>{
-  //   console.log(e.target.value)
-  // }
+
   useEffect(() => {
+    setValue('district','')
+    setValue('ward','')
     if (idCity) {
       fetch(`https://api.aizalog.com/sale/area/province/${idCity}/district`)
         .then(function (res) {
@@ -84,20 +89,9 @@ export default function Register1(props: any) {
         });
     }
   }, [idCity]);
-
-  //   const debounceSearchPartnerDropDown = useCallback(
-  //     debounce((nextValue) => {
-  //       // setInputRoute(nextValue);
-  //     }, 300),
-  //     [],
-  //   );
-
-  // const handleSeaechDistrict=(e:any)=>{
-  //   // console.log('e',e.target.value)
-  //   debounceSearchPartnerDropDown(e?.target?.value);
-  // }
-
+ 
   useEffect(() => {
+    // console.log('idDistrict',idDistrict)
     if (idDistrict) {
       fetch(`https://api.aizalog.com/sale/area/district/${idDistrict}/precinct`)
         .then(function (res) {
@@ -118,9 +112,7 @@ export default function Register1(props: any) {
       setIsGender(false);
     }
   }, [watchHasVatInvoice]);
-  // const handleSeaechDistrict = (e: any) => {
-  //   console.log("e.e", e.target.value);
-  // };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Box px={2} paddingTop={2}>
@@ -215,8 +207,8 @@ export default function Register1(props: any) {
               placeholder="Thành phố"
               control={control}
               name="city"
-              onChange={e => handleSearchDistrict(e)}
-              menus={listCity.map((city: any) => {
+              onChange={(e) => handleSearchDistrict(e)}
+              menus={listCity.map((city) => {
                 return {
                   value: city.areaCode,
                   content: city.name,
@@ -231,10 +223,10 @@ export default function Register1(props: any) {
               placeholder="Quận huyện"
               control={control}
               name="district"
-              menus={listDistrict.map((city: any) => {
+              menus={listDistrict.map((district) => {
                 return {
-                  value: city.areaCode,
-                  content: city.name,
+                  value: district.areaCode,
+                  content: district.name,
                 };
               })}
             />
@@ -245,10 +237,10 @@ export default function Register1(props: any) {
               placeholder="Phường xã"
               control={control}
               name="ward"
-              menus={listWard.map((city: any) => {
+              menus={listWard.map((ward) => {
                 return {
-                  value: city.areaCode,
-                  content: city.name,
+                  value: ward.areaCode,
+                  content: ward.name,
                 };
               })}
             />

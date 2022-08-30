@@ -1,10 +1,11 @@
 import * as yup from "yup";
-// import { useTranslation } from 'next-i18next';
-export function VaLidationRegister1Form(isGender: any) {
+import { IsCheckGender } from "./type";
+import { useTranslation } from 'next-i18next';
+export function VaLidationRegister1Form(isGender: IsCheckGender) {
   const checkGender = isGender.isGender;
-  //   const { t } = useTranslation();
+    const { t } = useTranslation();
   const schema = yup.object().shape({
-    userName: yup.string().required("Nhập tên"),
+    userName: yup.string().required(t('common:enterName')),
     phone: yup.string().required("Nhập số đt"),
     email: yup.string().required("Nhập email").email("Email ko đúng định dạng"),
     password: yup.string().required("Nhập mật khẩu"),

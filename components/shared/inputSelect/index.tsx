@@ -19,6 +19,7 @@ const InputSelect = (props: InputSelectPropsTypes) => {
     currValue,
     isTurnover,
     isCost,
+    onChange,
     ...restProps
   } = props;
 
@@ -112,7 +113,7 @@ const InputSelect = (props: InputSelectPropsTypes) => {
           'is-turnover': isTurnover,
         })}
         value={field.value}
-        onChange={(e) => field.onChange(e?.target?.value)}
+        onChange={(e) => field.onChange(e)}
         inputProps={{
           placeholder: placeholder,
           readOnly,
@@ -120,7 +121,6 @@ const InputSelect = (props: InputSelectPropsTypes) => {
         }}
         defaultValue={restProps.defaultValue}
         renderValue={(selected) => {
-          console.log('...', selected)
           let value = '';
           if ((!selected && selected !== 0) || selected.length === 0) {
             return <Box sx={{ color: '#888888' }}>{placeholder}</Box>;

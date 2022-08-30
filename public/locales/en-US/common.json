@@ -1,0 +1,11 @@
+{
+  "enterName": "Enter name",
+  "enterPhoneNumber": "Enter phone number",
+  "enterEmail": "Enter email",
+  "enterPassword": "Enter password",
+  "enterRePassword": "Enter re password",
+  "enterGender": "Enter gender",
+  "enterCity": "Enter city",
+  "enterDistrict": "Enter district",
+  "enterWard": "Enter Ward"
+}
