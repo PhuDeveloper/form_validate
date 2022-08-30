@@ -12,6 +12,7 @@
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@hookform/resolvers": "^2.9.7",
+    "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.2",
     "i18next": "^21.9.1",
     "next": "12.2.5",

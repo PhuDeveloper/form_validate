@@ -72,7 +72,7 @@ export default function Register1(props: FormPropsInterface) {
     name: "district",
   });
 
-  const handleSearchDistrict = (e: any) => {
+  const handleSearchDistrict = (e:any) => {
 
   };
 
