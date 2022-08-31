@@ -57,7 +57,7 @@ export default function Register1(props: FormPropsInterface) {
       .then((data) => setListCity(data));
   }, []);
 
-  const watchHasVatInvoice = useWatch({
+  const watchGender = useWatch({
     control,
     name: "gender",
   });
@@ -106,12 +106,12 @@ export default function Register1(props: FormPropsInterface) {
   }, [idDistrict]);
 
   useEffect(() => {
-    if (watchHasVatInvoice == "2") {
+    if (watchGender == "2") {
       setIsGender(true);
     } else {
       setIsGender(false);
     }
-  }, [watchHasVatInvoice]);
+  }, [watchGender]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

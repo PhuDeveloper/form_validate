@@ -27,7 +27,7 @@ const InputPhone = (props: InputPhonePropsTypes, ref: any) => {
 
   const sizeTextField = size || 'small';
   const variantTextField = variant || 'outlined';
-  const fullWidthTextField = fullWidth || true;
+  const fullWidthTextField = fullWidth || true; 
 
   return (
     <NumberFormat
