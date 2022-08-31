@@ -1,4 +1,12 @@
-export interface ValueInputForm {}
+export interface ValueInputForm {
+  userName: string;
+  email: string;
+  phone: string;
+  password: string;
+  rePassword: string;
+  gender?: string;
+  genderOther?: string;
+}
 
 export interface RegisterInfoInterface {
   userName: string;
@@ -13,5 +21,8 @@ export interface ListInfoRegisterInterface {
   register_info: RegisterInfoInterface[];
 }
 export interface RegisterInfoFomart{
-  registerInfo:RegisterInfoInterface[]
+  registerInfo:ValueInputForm[]
+}
+export interface FormPropsInterface {
+  handleFormSubmit: (value: RegisterInfoFomart) => void;
 }

@@ -10,21 +10,21 @@ export function VaLidationRegister2Form() {
         userName: yup.string().required(t("common:enterName")),
         phone: yup
           .string()
-          .required("Nhập số đt")
+          .required(t("common:enterPhoneNumber"))
           .matches(
             /((09|03|07|08|05|84)+([0-9]{8})\b)/g,
-            "Số đt ko đúng định dạng"
+            (t("common:invalidatePhone"))
           ),
         email: yup
           .string()
-          .required("Nhập email")
-          .email("Email ko đúng định dạng"),
-        password: yup.string().required("Nhập mật khẩu"),
+          .required(t("common:enterEmail"))
+          .email(t("common:invalidEmail")),
+        password: yup.string().required(t("common:enterPassword")),
         rePassword: yup
           .string()
-          .label("Nhập lại mật khẩu")
+          .label(t("common:enterRePassword"))
           .required()
-          .oneOf([yup.ref("password"), null], "Mật khẩu không trùng khớp"),
+          .oneOf([yup.ref("password"), null], t("common:passwordDoesNotMatch")),
       })
     ),
   });

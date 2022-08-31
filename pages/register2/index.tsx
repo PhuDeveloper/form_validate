@@ -1,5 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Register2 from "../../components/register2";
+import { RegisterInfoFomart, ValueInputForm } from "./type";
 
 
 
@@ -10,12 +11,12 @@ export async function getStaticProps({ locale }: any) {
     },
   };
 }
+
 export default function RegisterPage2() {
-  const handleFormSubmit = (value: any) => {
+  const handleFormSubmit = (value: RegisterInfoFomart) => {
     console.log("value_form: ", value);
   };
   return (
     <Register2 handleFormSubmit={handleFormSubmit}/>
-    // <Register1 handleFormSubmit={handleFormSubmit}/>
   );
 }

@@ -5,8 +5,11 @@ export interface ValueInputForm {
     password: string;
     rePassword: string;
     genderOther?: string;
-    city: string;
-    district: string;
-    ward: string;
+    city?: string;
+    district?: string;
+    ward?: string;
     gender?: string;
+  }
+  export interface RegisterInfoFomart{
+    registerInfo:ValueInputForm[]
   }

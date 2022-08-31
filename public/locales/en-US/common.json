@@ -1,5 +1,6 @@
 {
   "enterName": "Enter name",
+  "invalidEmail": "Email invalidate",
   "enterPhoneNumber": "Enter phone number",
   "enterEmail": "Enter email",
   "enterPassword": "Enter password",
@@ -7,5 +8,7 @@
   "enterGender": "Enter gender",
   "enterCity": "Enter city",
   "enterDistrict": "Enter district",
-  "enterWard": "Enter Ward"
+  "enterWard": "Enter Ward",
+  "invalidatePhone": "Phone number invalidate",
+  "passwordDoesNotMatch": "Password does not match"
 }

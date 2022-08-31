@@ -6,20 +6,29 @@ export function VaLidationRegister1Form(isGender: IsCheckGender) {
   const { t } = useTranslation();
   const schema = yup.object().shape({
     userName: yup.string().required(t("common:enterName")),
-    phone: yup.string().required("Nhập số đt"),
-    email: yup.string().required("Nhập email").email("Email ko đúng định dạng"),
-    password: yup.string().required("Nhập mật khẩu"),
+    phone: yup
+      .string()
+      .required(t("common:enterPhoneNumber"))
+      .matches(
+        /((09|03|07|08|05|84)+([0-9]{8})\b)/g,
+        (t("common:invalidatePhone"))
+      ),
+    email: yup
+      .string()
+      .required(t("common:enterEmail"))
+      .email(t("common:invalidateEmail")),
+    password: yup.string().required(t("common:enterPassword")),
     rePassword: yup
       .string()
-      .label("Nhập lại mật khẩu")
+      .label(t("common:enterRePassword"))
       .required()
-      .oneOf([yup.ref("password"), null], "Mật khẩu không trùng khớp"),
+      .oneOf([yup.ref("password"), null], t("common:passwordDoesNotMatch")),
     genderOther: checkGender
-      ? yup.string().required("Nhập giới tính khác")
+      ? yup.string().required(t("common:enterGender"))
       : yup.string(),
-    city: yup.string().required("Chọn thành phố"),
-    district: yup.string().required("Chọn quận huyện"),
-    ward: yup.string().required("Chọn phường xã"),
+    city: yup.string().required(t("common:enterCity")),
+    district: yup.string().required(t("common:enterDistrict")),
+    ward: yup.string().required(t("common:enterWard")),
   });
 
   return schema;

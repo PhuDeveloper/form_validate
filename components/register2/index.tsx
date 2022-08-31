@@ -11,12 +11,13 @@ import InputSelect from "../shared/inputSelect";
 import InputText from "../shared/inputText";
 import { VaLidationRegister2Form } from "./validate";
 import {
+  FormPropsInterface,
   ListInfoRegisterInterface,
   RegisterInfoFomart,
   RegisterInfoInterface,
 } from "./type";
 
-export default function Register2(props: any) {
+export default function Register2(props: FormPropsInterface) {
   const { handleFormSubmit } = props;
   const [isGender, setIsGender] = useState<boolean>(false);
 
@@ -38,7 +39,7 @@ export default function Register2(props: any) {
   });
 
   const onSubmit = (value: RegisterInfoFomart) => {
-    console.log("sssss", value);
+    
     const formValues: RegisterInfoFomart = {
       registerInfo: value?.registerInfo.map((value, index) => {
         return {
@@ -70,7 +71,7 @@ export default function Register2(props: any) {
   });
 
   useEffect(() => {
-    watchGender.map((val: any) => {
+    watchGender.map((val: RegisterInfoInterface) => {
       if (val.gender === "2") {
         setIsGender(true);
       } else {
