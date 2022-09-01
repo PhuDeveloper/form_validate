@@ -6,6 +6,9 @@ export interface ValueInputForm {
   rePassword: string;
   gender?: string;
   genderOther?: string;
+  city: string;
+  district: string;
+  ward: string;
 }
 
 export interface RegisterInfoInterface {
@@ -16,6 +19,9 @@ export interface RegisterInfoInterface {
   rePassword: string;
   gender?: string;
   genderOther?: string;
+  city: string;
+  district: string;
+  ward: string;
 }
 export interface ListInfoRegisterInterface {
   register_info: RegisterInfoInterface[];
@@ -25,4 +31,8 @@ export interface RegisterInfoFomart{
 }
 export interface FormPropsInterface {
   handleFormSubmit: (value: RegisterInfoFomart) => void;
+}
+export interface Address {
+  areaCode: string;
+  name: string;
 }

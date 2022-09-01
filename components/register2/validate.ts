@@ -23,7 +23,7 @@ export function VaLidationRegister2Form() {
         rePassword: yup
           .string()
           .label(t("common:enterRePassword"))
-          .required()
+          .required(t("common:enterRePassword"))
           .oneOf([yup.ref("password"), null], t("common:passwordDoesNotMatch")),
       })
     ),

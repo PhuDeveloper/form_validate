@@ -16,12 +16,12 @@ export function VaLidationRegister1Form(isGender: IsCheckGender) {
     email: yup
       .string()
       .required(t("common:enterEmail"))
-      .email(t("common:invalidateEmail")),
+      .email(t("common:invalidEmail")),
     password: yup.string().required(t("common:enterPassword")),
     rePassword: yup
       .string()
       .label(t("common:enterRePassword"))
-      .required()
+      .required(t("common:enterRePassword"))
       .oneOf([yup.ref("password"), null], t("common:passwordDoesNotMatch")),
     genderOther: checkGender
       ? yup.string().required(t("common:enterGender"))

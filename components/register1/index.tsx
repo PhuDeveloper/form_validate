@@ -9,6 +9,7 @@ import InputText from "../shared/inputText";
 import { VaLidationRegister1Form } from "./validate";
 import { useCallback, useEffect, useState } from "react";
 import { Address, FormPropsInterface, ValueInputForm } from "./type";
+import useListCity from "../hook/useListCity";
 
 
 
@@ -51,11 +52,11 @@ export default function Register1(props: FormPropsInterface) {
     };
     handleFormSubmit(formValues);
   };
-  useEffect(() => {
-    fetch("https://api.aizalog.com/sale/area/province")
-      .then((res) => res.json())
-      .then((data) => setListCity(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://api.aizalog.com/sale/area/province")
+  //     .then((res) => res.json())
+  //     .then((data) => setListCity(data));
+  // }, []);
 
   const watchGender = useWatch({
     control,
@@ -208,12 +209,7 @@ export default function Register1(props: FormPropsInterface) {
               control={control}
               name="city"
               onChange={(e) => handleSearchDistrict(e)}
-              menus={listCity.map((city) => {
-                return {
-                  value: city.areaCode,
-                  content: city.name,
-                };
-              })}
+              menus={useListCity()}
             />
           </Grid>
           <Grid item>
