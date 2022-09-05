@@ -23,7 +23,7 @@ export default function InputSelectWard(props: InputSelectWardProps) {
 
   return (
     <InputSelect
-      placeholder="Quận huyện"
+      placeholder="Phường xã"
       control={props.control}
       name={props.name}
       menus={listWard.map((district) => {

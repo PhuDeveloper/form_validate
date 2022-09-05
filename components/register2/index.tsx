@@ -24,9 +24,8 @@ export default function Register2(props: FormPropsInterface) {
   const { handleFormSubmit } = props;
   const [isGender, setIsGender] = useState<boolean>(false);
   const [listCity, setListCity] = useState<Address[]>([]);
-  const [listDistrict, setListDistrict] = useState<Address[]>([]);
+
   const [listWard, setListWard] = useState<Address[]>([]);
-  const [infoDistrict, setInfoDistrict] = useState<any>({});
 
   const { control, handleSubmit, register, setValue } = useForm<any>({
     defaultValues: {
@@ -217,8 +216,6 @@ export default function Register2(props: FormPropsInterface) {
                     fontSize={14}
                     name={`registerInfo.${index}.gender`}
                     control={control}
-                    // onClick={() => {console.log('index', index)}}
-                    // onChange={(e) => console.log(e.target.value)}
                     radioList={[
                       {
                         value: "0",
