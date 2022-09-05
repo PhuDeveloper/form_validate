@@ -4,3 +4,7 @@ export interface InputSelectCityProps {
   index: number;
   
 }
+export interface Address {
+  areaCode: string;
+  name: string;
+}

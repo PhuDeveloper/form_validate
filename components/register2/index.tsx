@@ -272,6 +272,7 @@ export default function Register2(props: FormPropsInterface) {
                   index={index}
                   idDistrict={watchGender[index]?.district}
                   name={`registerInfo.${index}.ward`}
+                  setValue={setValue}
                 />
               </Grid>
             </Grid>

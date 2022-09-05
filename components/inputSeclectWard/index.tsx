@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import InputSelect from "../shared/inputSelect";
-import { InputSelectWardProps } from "./type";
+import { Address, InputSelectWardProps } from "./type";
 
 export default function InputSelectWard(props: InputSelectWardProps) {
-  const [listWard, setListWard] = useState<any>([]);
+  const [listWard, setListWard] = useState<Address[]>([]);
   useEffect(() => {
-
+    props.setValue("ward", "");
     if (props.idDistrict) {
       fetch(
         `https://api.aizalog.com/sale/area/district/${props.idDistrict}/precinct`
@@ -25,7 +25,7 @@ export default function InputSelectWard(props: InputSelectWardProps) {
       placeholder="Quận huyện"
       control={props.control}
       name={props.name}
-      menus={listWard.map((district: any) => {
+      menus={listWard.map((district) => {
         return {
           value: district.areaCode,
           content: district.name,

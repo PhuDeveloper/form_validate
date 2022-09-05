@@ -5,3 +5,7 @@ export interface InputSelectDistrictProps {
   index: number;
   setValue?: any;
 }
+export interface Address {
+  areaCode: string;
+  name: string;
+}
