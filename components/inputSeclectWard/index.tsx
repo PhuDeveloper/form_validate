@@ -4,7 +4,7 @@ import { Address, InputSelectWardProps } from "./type";
 
 export default function InputSelectWard(props: InputSelectWardProps) {
   const [listWard, setListWard] = useState<Address[]>([]);
-  console.log(props.name);
+
   useEffect(() => {
     props.setValue(`registerInfo.${props.index}.ward`, "");
     if (props.idDistrict) {
