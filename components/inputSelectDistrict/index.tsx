@@ -4,10 +4,10 @@ import { Address, InputSelectDistrictProps } from "./type";
 
 export default function InputSelectDistrict(props: InputSelectDistrictProps) {
   const [listDistrict, setListDistrict] = useState<Address[]>([]);
-
+  // console.log(props.name);
   useEffect(() => {
-    props.setValue("district", "");
-    props.setValue("ward", "");
+    props.setValue(`registerInfo.${props.index}.district`, "");
+  
     if (props.idCity) {
       fetch(
         `https://api.aizalog.com/sale/area/province/${props.idCity}/district`

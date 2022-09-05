@@ -4,8 +4,9 @@ import { Address, InputSelectWardProps } from "./type";
 
 export default function InputSelectWard(props: InputSelectWardProps) {
   const [listWard, setListWard] = useState<Address[]>([]);
+  console.log(props.name);
   useEffect(() => {
-    props.setValue("ward", "");
+    props.setValue(`registerInfo.${props.index}.ward`, "");
     if (props.idDistrict) {
       fetch(
         `https://api.aizalog.com/sale/area/district/${props.idDistrict}/precinct`
@@ -18,7 +19,7 @@ export default function InputSelectWard(props: InputSelectWardProps) {
         })
         .catch((e) => console.log(e));
     }
-  }, [props.idDistrict]);
+  }, [props.idDistrict, props.idCity]);
 
   return (
     <InputSelect
