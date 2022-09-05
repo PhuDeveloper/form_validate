@@ -1,22 +1,24 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, Grid } from "@mui/material";
 import { RemoveCircleOutlineOutlined } from "@mui/icons-material";
-import { useEffect, useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { Box, Button, Grid } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useFieldArray, useForm, useWatch } from "react-hook-form";
+import InputSelectWard from "../inputSeclectWard";
+import InputSelectDistrict from "../inputSelectDistrict";
+import InputSelectCity from "../inputSelectListCity";
 import FormControlLabelCustom from "../shared/formControlLable";
 import InputPhone from "../shared/inputPhone";
 import InputRadio from "../shared/inputRadio";
 import InputSelect from "../shared/inputSelect";
 import InputText from "../shared/inputText";
-import { VaLidationRegister2Form } from "./validate";
 import {
   Address,
   FormPropsInterface,
-  ListInfoRegisterInterface,
   RegisterInfoFomart,
   RegisterInfoInterface,
 } from "./type";
+import { VaLidationRegister2Form } from "./validate";
 
 export default function Register2(props: FormPropsInterface) {
   const { handleFormSubmit } = props;
@@ -24,6 +26,7 @@ export default function Register2(props: FormPropsInterface) {
   const [listCity, setListCity] = useState<Address[]>([]);
   const [listDistrict, setListDistrict] = useState<Address[]>([]);
   const [listWard, setListWard] = useState<Address[]>([]);
+  const [infoDistrict, setInfoDistrict] = useState<any>({});
 
   const { control, handleSubmit, register, setValue } = useForm<any>({
     defaultValues: {
@@ -96,21 +99,6 @@ export default function Register2(props: FormPropsInterface) {
   }, []);
 
   useEffect(() => {
-    setValue("district", "");
-    setValue("ward", "");
-    if (idCity) {
-      fetch(`https://api.aizalog.com/sale/area/province/${idCity}/district`)
-        .then(function (res) {
-          return res.json();
-        })
-        .then(function (data) {
-          setListDistrict(data);
-        });
-    }
-  }, [idCity]);
-
-  useEffect(() => {
-    // console.log('idDistrict',idDistrict)
     if (idDistrict) {
       fetch(`https://api.aizalog.com/sale/area/district/${idDistrict}/precinct`)
         .then(function (res) {
@@ -256,48 +244,34 @@ export default function Register2(props: FormPropsInterface) {
                   />
                 </Box>
               </Grid>
+
               <Grid item>
                 <FormControlLabelCustom>Thành phố</FormControlLabelCustom>
-                <InputSelect
-                  placeholder="Thành phố"
+                <InputSelectCity
                   control={control}
+                  index={index}
                   name={`registerInfo.${index}.city`}
-                  onChange={(e) => handleSearchDistrict(e)}
-                  menus={listCity.map((city) => {
-                    return {
-                      value: city.areaCode,
-                      content: city.name,
-                    };
-                  })}
                 />
               </Grid>
+
               <Grid item>
                 <FormControlLabelCustom>Quận huyện</FormControlLabelCustom>
-                <InputSelect
-                  // onChange={handleSearchWard}
-                  placeholder="Quận huyện"
+                <InputSelectDistrict
                   control={control}
+                  index={index}
+                  idCity={watchGender[index]?.city}
                   name={`registerInfo.${index}.district`}
-                  menus={listDistrict.map((district) => {
-                    return {
-                      value: district.areaCode,
-                      content: district.name,
-                    };
-                  })}
+                  setValue={setValue}
                 />
               </Grid>
+
               <Grid item>
                 <FormControlLabelCustom>Phường xã</FormControlLabelCustom>
-                <InputSelect
-                  placeholder="Phường xã"
+                <InputSelectWard
                   control={control}
+                  index={index}
+                  idDistrict={watchGender[index]?.district}
                   name={`registerInfo.${index}.ward`}
-                  menus={listWard.map((ward) => {
-                    return {
-                      value: ward.areaCode,
-                      content: ward.name,
-                    };
-                  })}
                 />
               </Grid>
             </Grid>

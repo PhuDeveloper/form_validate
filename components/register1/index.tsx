@@ -11,9 +11,6 @@ import { useCallback, useEffect, useState } from "react";
 import { Address, FormPropsInterface, ValueInputForm } from "./type";
 import useListCity from "../hook/useListCity";
 
-
-
-
 export default function Register1(props: FormPropsInterface) {
   const { handleFormSubmit } = props;
   const [isGender, setIsGender] = useState<boolean>(false);
@@ -21,8 +18,7 @@ export default function Register1(props: FormPropsInterface) {
   const [listDistrict, setListDistrict] = useState<Address[]>([]);
   const [listWard, setListWard] = useState<Address[]>([]);
 
-
-  const { control, handleSubmit,setValue } = useForm<ValueInputForm>({
+  const { control, handleSubmit, setValue } = useForm<ValueInputForm>({
     defaultValues: {
       userName: "",
       email: "",
@@ -46,6 +42,7 @@ export default function Register1(props: FormPropsInterface) {
       password: value.password,
       rePassword: value.rePassword,
       genderOther: value.genderOther,
+      gender: value.gender,
       city: value.city,
       district: value.district,
       ward: value.ward,
@@ -73,13 +70,11 @@ export default function Register1(props: FormPropsInterface) {
     name: "district",
   });
 
-  const handleSearchDistrict = (e:any) => {
-
-  };
+  const handleSearchDistrict = (e: any) => {};
 
   useEffect(() => {
-    setValue('district','')
-    setValue('ward','')
+    setValue("district", "");
+    setValue("ward", "");
     if (idCity) {
       fetch(`https://api.aizalog.com/sale/area/province/${idCity}/district`)
         .then(function (res) {
@@ -87,10 +82,11 @@ export default function Register1(props: FormPropsInterface) {
         })
         .then(function (data) {
           setListDistrict(data);
-        });
+        })
+        .catch((e) => console.log(e));
     }
   }, [idCity]);
- 
+
   useEffect(() => {
     // console.log('idDistrict',idDistrict)
     if (idDistrict) {

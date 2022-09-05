@@ -25,6 +25,9 @@ export function VaLidationRegister2Form() {
           .label(t("common:enterRePassword"))
           .required(t("common:enterRePassword"))
           .oneOf([yup.ref("password"), null], t("common:passwordDoesNotMatch")),
+          city: yup.string().required(t("common:enterCity")),
+          district: yup.string().required(t("common:enterDistrict")),
+          ward: yup.string().required(t("common:enterWard")),
       })
     ),
   });
